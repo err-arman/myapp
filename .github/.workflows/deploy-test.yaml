@@ -6,6 +6,8 @@ on:
   pull_request:
     branches: ["main"]
 
+  workflow_dispath:
+
   strategy:
     matrix:
     node-version: [18.x, 19.x, 20.x]
@@ -13,9 +15,14 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    timeout-minutes: 360
 
     steps:
-      - uses: action/checkout@v4
+      - name: Setup Interactiv SSH Terminal
+      - uses: mxschmitt/action-tmate@v3
+        with:
+          detached: false
+
       - name: Use Node.js ${{matrix.node-version}}
         uses: action/setup-node@v3
         with:
