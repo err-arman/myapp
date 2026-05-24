@@ -5,16 +5,14 @@ on:
     branches: ["main", "dev"]
   pull_request:
     branches: ["main", "dev"]
-  workflow_dispatch: # Fixed typo here
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    timeout-minutes: 360
 
     strategy: # Moved strategy inside the build job
       matrix:
-        node-version: [18.x, 19.x, 20.x] # Fixed indentation
+        node-version: [21.x, 25.x, 26.x] # Fixed indentation
 
     steps:
       # CRITICAL: Added checkout so your project files exist on the server
