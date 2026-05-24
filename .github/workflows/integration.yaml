@@ -10,11 +10,13 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
-    strategy: # Moved strategy inside the build job
+    strategy: 
       matrix:
-        node-version: [21.x, 25.x, 26.x] # Fixed indentation
+        node-version: [21.x, 25.x, 24.x] # Fixed indentation
 
     steps:
+      - name: Checkout repository code
+        uses: actions/checkout@v4
       # CRITICAL: Added checkout so your project files exist on the server
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v4 # Updated to v4
