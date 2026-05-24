@@ -12,7 +12,7 @@ jobs:
 
     strategy: 
       matrix:
-        node-version: [21.x, 25.x, 24.x] # Fixed indentation
+        node-version: [21.x, 25.x, 24.x] # 
 
     steps:
       - name: Checkout repository code
@@ -25,7 +25,7 @@ jobs:
           cache: npm
 
       - name: Installing Node package manager
-      - run: npm i
+        run: npm i
 
       - name: Building project
-      - run: npm run build
+        run: npm run build
