@@ -5,32 +5,25 @@ on:
     branches: ["main"]
   pull_request:
     branches: ["main"]
-  workflow_dispatch: # Fixed typo here
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    timeout-minutes: 360
 
     strategy: # Moved strategy inside the build job
       matrix:
-        node-version: [18.x, 19.x, 20.x] # Fixed indentation
+        node-version: [21.x, 25.x, 26.x] # Fixed indentation
 
     steps:
       # CRITICAL: Added checkout so your project files exist on the server
-      - uses: actions/checkout@v4 
-
-      # Fixed dash and combined name/uses into one clean step
-      - name: Setup Interactive SSH Terminal
-        uses: mxschmitt/action-tmate@v3
-        with:
-          detached: false
-
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v4 # Updated to v4
         with:
           node-version: ${{ matrix.node-version }}
           cache: npm
-          
-      - run: npm i 
+
+      - name: Installing Node package manager
+      - run: npm i
+
+      - name: Building project
       - run: npm run build
